@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import theme from './theme';
+
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <Home /> } />
+          <Route path="SignIn" element={ <SignIn /> } />
+          <Route path="*" element={ <h2 style={{ textAlign: 'center' }}>Oops... not found! 404</h2> } />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
